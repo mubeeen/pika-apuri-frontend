@@ -1,21 +1,24 @@
-'use client';
+"use client";
 
 import React, { useState } from "react";
 import { useAppDispatch } from "../../../redux/store";
 import { loginAsync } from "../../../redux/slices";
+import { useRouter } from "next/navigation";
 
-interface LoginProps {}
-
-const Login: React.FC<LoginProps> = ({}) => {
+const Login: React.FC = ({}) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  const router = useRouter();
   const dispatch = useAppDispatch();
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent form default behavior
-    // Dispatch the login action
+    e.preventDefault();
     dispatch(loginAsync({ email, password }));
+  };
+
+  const nagivateToForgotPassword = () => {
+    router.push("/forgot-password");
   };
 
   return (
@@ -25,18 +28,19 @@ const Login: React.FC<LoginProps> = ({}) => {
         <input
           type="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)} // Use setState to update email
+          onChange={(e) => setEmail(e.target.value)} 
         />
         <br />
         <label>Password: </label>
         <input
           type="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)} // Use setState to update password
+          onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit">Submit</button>
         <br />
       </form>
+      <button onClick={nagivateToForgotPassword}>Forgot Password</button>
     </div>
   );
 };

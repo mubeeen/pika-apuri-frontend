@@ -1,10 +1,10 @@
 export interface AuthState {
+  id: string;
   firstname: string;
   lastname: string;
   email: string;
-  phoneNumber: string;
   password: string;
-  loggedIn: boolean;
+  isAuthenticated: boolean;
   loading: boolean;
   error: string;
 }
@@ -18,6 +18,14 @@ export interface signupCredentials {
   firstname: string;
   lastname: string;
   email: string;
-  phoneNumber: string;
   password: string;
+}
+
+export interface forgotPasswordCredentials {
+  email: string;
+}
+
+export interface resetPasswordCredentials {
+  newPassword: string;
+  token: string;
 }

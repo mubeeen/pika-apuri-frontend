@@ -1,12 +1,10 @@
-import type { Metadata } from "next";
+// import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Pika Apuri",
-  description: "Pika Apuri",
-};
+// export const metadata: Metadata = {
+//   title: "Pika Apuri",
+//   description: "Pika Apuri",
+// };
 
 export default function Home() {
-  return (
-    <div>HEY MAN</div>
-  );
+  return <div>hello</div>;
 }

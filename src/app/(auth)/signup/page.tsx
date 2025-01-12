@@ -1,12 +1,19 @@
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "SignUp - Pika Apuri",
-};
+// import type { Metadata } from "next";
+import Signup from "./Signup";
+import { Provider } from "react-redux";
+import { store } from "@/redux/store";
+
+// export const metadata: Metadata = {
+//   title: "SignUp - Pika Apuri",
+// };
 
 const Page = () => {
   return (
-   <div>Signup</div>
+    <Provider store={store}>
+      <Signup />
+    </Provider>
   );
 };
 
