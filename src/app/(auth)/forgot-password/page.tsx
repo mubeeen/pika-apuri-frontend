@@ -5,9 +5,7 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
-  return (
-   <div>Forgot Password</div>
-  );
+  return <div>Forgot Password</div>;
 };
 
 export default Page;
