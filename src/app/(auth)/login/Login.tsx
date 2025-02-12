@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { useAppDispatch } from "../../../redux/store";
+import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import { loginAsync } from "../../../redux/slices";
 import { useRouter } from "next/navigation";
 
@@ -11,6 +11,7 @@ const Login: React.FC = ({}) => {
 
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const { error, notification } = useAppSelector((state) => state.toast);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,6 +24,8 @@ const Login: React.FC = ({}) => {
 
   return (
     <div>
+      <p>Errro: {error}</p>
+      <p>notification: {notification}</p>
       <form onSubmit={handleSubmit}>
         <label>Email: </label>
         <input

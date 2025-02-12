@@ -13,8 +13,6 @@ const withAuth = <P extends object>(WrappedComponent: React.ComponentType<P>) =>
   const RequiresAuth: React.FC<P> = (props) => {
     const { isAuthenticated } = useAppSelector((state) => state.auth);
 
-    console.log("ISAUTH MUBEENE", isAuthenticated);
-
     const router = useRouter();
 
     useEffect(() => {
