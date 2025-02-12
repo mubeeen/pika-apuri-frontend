@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { useAppDispatch } from "../../../redux/store";
+import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import { signupAsync } from "../../../redux/slices";
 
 const Signup: React.FC = ({}) => {
@@ -10,6 +10,7 @@ const Signup: React.FC = ({}) => {
   const [lastname, setLastName] = useState<string>("");
 
   const dispatch = useAppDispatch();
+  const { error, notification } = useAppSelector((state) => state.toast);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,6 +19,8 @@ const Signup: React.FC = ({}) => {
 
   return (
     <div>
+      <p>Errro: {error}</p>
+      <p>notification: {notification}</p>
       <form onSubmit={handleSubmit}>
         <label>Firstname: </label>
         <input

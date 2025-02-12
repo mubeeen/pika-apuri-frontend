@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AuthState, forgotPasswordCredentials, loginCredentials, resetPasswordCredentials, signupCredentials } from "../../types";
 import { loginAPI, logoutAPI, signupAPI, forgotPasswordApi, resetPasswordApi } from "../../api/authAPI";
+import { showToast } from "@/utils/toastUtils";
 
 const initialState: AuthState = {
   id: "",
@@ -13,59 +14,80 @@ const initialState: AuthState = {
   error: "",
 };
 
-export const loginAsync = createAsyncThunk("auth/login", async (credentials: loginCredentials, { rejectWithValue }) => {
+export const loginAsync = createAsyncThunk("auth/login", async (credentials: loginCredentials, { rejectWithValue, dispatch }) => {
   try {
     const response = await loginAPI(credentials);
+    showToast(dispatch, "Login successful!", "notification", 5000);
+
     return response;
   } catch (error: unknown) {
     if (error instanceof Error) {
+      showToast(dispatch, error instanceof Error ? error.message : "An unknown error occurred", "error", 5000);
       return rejectWithValue(error?.message);
     }
+    showToast(dispatch, "An unknown error occurred", "error", 5000);
     return rejectWithValue("An unknown error occurred");
   }
 });
 
-export const signupAsync = createAsyncThunk("auth/signup", async (credential: signupCredentials, { rejectWithValue }) => {
+export const signupAsync = createAsyncThunk("auth/signup", async (credential: signupCredentials, { rejectWithValue, dispatch }) => {
   try {
-    return await signupAPI(credential);
+    const response = await signupAPI(credential);
+    showToast(dispatch, "Signup successfull!", "notification", 5000);
+
+    return response;
   } catch (error: unknown) {
     if (error instanceof Error) {
+      showToast(dispatch, error instanceof Error ? error.message : "An unknown error occurred", "error", 5000);
       return rejectWithValue(error?.message);
     }
+    showToast(dispatch, "An unknown error occurred", "error", 5000);
     return rejectWithValue("An unknown error occurred");
   }
 });
 
-export const logoutAsync = createAsyncThunk("auth/logout", async (_: void, { rejectWithValue }) => {
+export const logoutAsync = createAsyncThunk("auth/logout", async (_: void, { rejectWithValue, dispatch }) => {
   try {
-    return await logoutAPI();
+    const response = await logoutAPI();
+    showToast(dispatch, "Logout successfull!", "notification", 5000);
+
+    return response;
   } catch (error: unknown) {
     if (error instanceof Error) {
+      showToast(dispatch, error instanceof Error ? error.message : "An unknown error occurred", "error", 5000);
       return rejectWithValue(error?.message);
     }
+    showToast(dispatch, "An unknown error occurred", "error", 5000);
     return rejectWithValue("An unknown error occurred");
   }
 });
 
-export const resetPasswordAsync = createAsyncThunk("auth/reset-password", async (credentials: resetPasswordCredentials, { rejectWithValue }) => {
+export const resetPasswordAsync = createAsyncThunk("auth/reset-password", async (credentials: resetPasswordCredentials, { rejectWithValue, dispatch }) => {
   try {
     const response = await resetPasswordApi(credentials);
+    showToast(dispatch, "Email with password reset instructions has been sent successfully!", "notification", 5000);
+
     return response;
   } catch (error: unknown) {
     if (error instanceof Error) {
+      showToast(dispatch, error instanceof Error ? error.message : "An unknown error occurred", "error", 5000);
       return rejectWithValue(error?.message);
     }
+    showToast(dispatch, "An unknown error occurred", "error", 5000);
     return rejectWithValue("An unknown error occurred");
   }
 });
 
-export const forgotPasswordAsync = createAsyncThunk("auth/forgot-password", async (credential: forgotPasswordCredentials, { rejectWithValue }) => {
+export const forgotPasswordAsync = createAsyncThunk("auth/forgot-password", async (credential: forgotPasswordCredentials, { rejectWithValue, dispatch }) => {
   try {
-    return await forgotPasswordApi(credential);
+    const response = await forgotPasswordApi(credential);
+    return response;
   } catch (error: unknown) {
     if (error instanceof Error) {
+      showToast(dispatch, error instanceof Error ? error.message : "An unknown error occurred", "error", 5000);
       return rejectWithValue(error?.message);
     }
+    showToast(dispatch, "An unknown error occurred", "error", 5000);
     return rejectWithValue("An unknown error occurred");
   }
 });

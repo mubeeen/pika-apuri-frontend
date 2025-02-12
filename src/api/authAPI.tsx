@@ -1,29 +1,27 @@
-import axios from "axios";
 import { loginCredentials, signupCredentials, forgotPasswordCredentials, resetPasswordCredentials } from "../types";
-
-const BASE_API_URL = "http://localhost:3000/auth";
+import API from "./api";
 
 export const loginAPI = async (credentials: loginCredentials) => {
-  const response = await axios.post(`${BASE_API_URL}/login`, { email: credentials.email, password: credentials.password });
+  const response = await API.post(`/login`, { email: credentials.email, password: credentials.password });
   return response.data;
 };
 
 export const signupAPI = async (credentials: signupCredentials) => {
-  const response = await axios.post(`${BASE_API_URL}/signup`, credentials);
+  const response = await API.post(`/signup`, credentials);
   return response.data;
 };
 
 export const logoutAPI = async () => {
-  const response = await axios.post(`${BASE_API_URL}/logout`);
+  const response = await API.post(`/logout`);
   return response.data;
 };
 
 export const forgotPasswordApi = async (credentials: forgotPasswordCredentials) => {
-  const response = await axios.post(`${BASE_API_URL}/forgot-password`, credentials);
+  const response = await API.post(`/forgot-password`, credentials);
   return response.data;
 };
 
 export const resetPasswordApi = async (credentials: resetPasswordCredentials) => {
-  const response = await axios.post(`${BASE_API_URL}/reset-password`, credentials);
+  const response = await API.post(`/reset-password`, credentials);
   return response.data;
 };
