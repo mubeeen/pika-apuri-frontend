@@ -28,18 +28,10 @@ const Login: React.FC = ({}) => {
       <p>notification: {notification}</p>
       <form onSubmit={handleSubmit}>
         <label>Email: </label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)} 
-        />
+        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <br />
         <label>Password: </label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         <button type="submit">Submit</button>
         <br />
       </form>

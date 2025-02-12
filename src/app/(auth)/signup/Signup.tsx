@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { useAppDispatch } from "../../../redux/store";
 import { signupAsync } from "../../../redux/slices";

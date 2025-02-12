@@ -1,20 +1,12 @@
-// import type { Metadata } from "next";
-
-"use client";
-import { Provider } from "react-redux";
+import type { Metadata } from "next";
 import ResetPassword from "./ResetPassword";
-import { store } from "@/redux/store";
 
-// export const metadata: Metadata = {
-//   title: "Reset Password - Pika Apuri",
-// };
-
-const Page = () => {
-  return (
-    <Provider store={store}>
-      <ResetPassword />
-    </Provider>
-  );
+export const metadata: Metadata = {
+  title: "Reset Password - Pika Apuri",
 };
 
-export default Page;
+const page = () => {
+  return <ResetPassword />;
+};
+
+export default page;
