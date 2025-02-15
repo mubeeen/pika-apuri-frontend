@@ -33,6 +33,7 @@ export const loginAsync = createAsyncThunk("auth/login", async (credentials: log
 export const signupAsync = createAsyncThunk("auth/signup", async (credential: signupCredentials, { rejectWithValue, dispatch }) => {
   try {
     const response = await signupAPI(credential);
+    
     showToast(dispatch, "Signup successfull!", "notification", 5000);
 
     return response;
@@ -65,7 +66,7 @@ export const logoutAsync = createAsyncThunk("auth/logout", async (_: void, { rej
 export const resetPasswordAsync = createAsyncThunk("auth/reset-password", async (credentials: resetPasswordCredentials, { rejectWithValue, dispatch }) => {
   try {
     const response = await resetPasswordApi(credentials);
-    showToast(dispatch, "Email with password reset instructions has been sent successfully!", "notification", 5000);
+    showToast(dispatch, "Password has been reset successfully", "notification", 5000);
 
     return response;
   } catch (error: unknown) {
@@ -81,6 +82,7 @@ export const resetPasswordAsync = createAsyncThunk("auth/reset-password", async 
 export const forgotPasswordAsync = createAsyncThunk("auth/forgot-password", async (credential: forgotPasswordCredentials, { rejectWithValue, dispatch }) => {
   try {
     const response = await forgotPasswordApi(credential);
+    showToast(dispatch, response.message , "notification", 5000);
     return response;
   } catch (error: unknown) {
     if (error instanceof Error) {

@@ -19,6 +19,7 @@ export interface signupCredentials {
   lastname: string;
   email: string;
   password: string;
+  role: 'seller' | 'buyer'
 }
 
 export interface forgotPasswordCredentials {
