@@ -1,13 +1,13 @@
 "use client";
 
 import { useAppDispatch } from "@/redux/store";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { resetPasswordAsync } from "@/redux/slices";
 import Toast from "@/app/_components/Toast";
 import { useRouter } from "next/navigation";
 
-const ResetPassword: React.FC = ({}) => {
+const ResetPasswordForm: React.FC = ({}) => {
   const [newPassword, setNewPassword] = useState("");
   const [token, setToken] = useState<string>("");
 
@@ -54,6 +54,14 @@ const ResetPassword: React.FC = ({}) => {
         </form>
       </div>
     </div>
+  );
+};
+
+const ResetPassword: React.FC = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResetPasswordForm />
+    </Suspense>
   );
 };
 
