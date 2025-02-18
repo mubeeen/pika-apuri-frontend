@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { useAppDispatch } from "../../../redux/store";
+import React, { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import { loginAsync } from "../../../redux/slices";
 import { useRouter } from "next/navigation";
 import Toast from "@/app/_components/Toast";
@@ -12,6 +12,17 @@ const Login: React.FC = ({}) => {
 
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const { isAuthenticated, accountType } = useAppSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      if (accountType === "buyer") {
+        router.push("/buyer-profile");
+      } else if (accountType === "seller") {
+        router.push("/seller-profile");
+      }
+    }
+  }, [isAuthenticated, accountType, router]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

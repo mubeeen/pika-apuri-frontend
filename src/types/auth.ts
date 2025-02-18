@@ -7,6 +7,7 @@ export interface AuthState {
   isAuthenticated: boolean;
   loading: boolean;
   error: string;
+  accountType: 'seller' | 'buyer' | null
 }
 
 export interface loginCredentials {
