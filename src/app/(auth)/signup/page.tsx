@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
+import Signup from "./Signup";
 
 export const metadata: Metadata = {
   title: "SignUp - Pika Apuri",
 };
 
-const Page = () => {
-  return (
-   <div>Signup</div>
-  );
+const page = () => {
+  return <Signup />;
 };
 
-export default Page;
+export default page;
