@@ -1,5 +1,5 @@
 
-const GeneralProfileLayout = () => {
+const page = () => {
   // const loggedInRole = useAppSelector((state) => state.auth.accountType);  
 
   return (
@@ -10,4 +10,4 @@ const GeneralProfileLayout = () => {
   );
 };
 
-export default GeneralProfileLayout;
+export default page;
